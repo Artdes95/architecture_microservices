@@ -2,18 +2,41 @@ package archimicroservices.projet;
 
 import javax.annotation.*;
 import javax.persistence.*;
-import javax.persistence.Id;
 
 @Entity
 
 public class TauxChange {
     @Id
-    @GeneratedValue
-    private Long Id;
-    String source;
-    String dest;
-    double taux;
-    String date;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    private String source;
+    private String dest;
+    private double taux;
+    private String date;
+
+    protected TauxChange(){}
+
+    public TauxChange(String source, String dest, double taux, String date){
+        this.source = source;
+        this.dest = dest;
+        this.taux = taux;
+        this.date = date;
+    }
+
+    public TauxChange(Long id, String source, String dest, double taux, String date) {
+        this.id = id;
+        this.source = source;
+        this.dest = dest;
+        this.taux = taux;
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Customer[id=%d, '%s'/'%s'='d' ('%s')]",
+                id, source, dest, taux, date);
+    }
 
 
     public String affichage() {
