@@ -34,7 +34,7 @@ public class TauxChange {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, '%s'/'%s'='d' ('%s')]",
+                "Rate : id=%d, '%s'/'%s'= %f ('%s')",
                 id, source, dest, taux, date);
     }
 

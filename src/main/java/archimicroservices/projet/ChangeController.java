@@ -19,12 +19,11 @@ public class ChangeController {
         return tauxChange.toString();
     }
 
-    @GetMapping("/devise-change/add/{id}/{source}/{dest}/{taux}/{date}")
+    @GetMapping("/devise-change/add/{source}/{dest}/{taux}/{date}")
     public String ajoutTauxChange
-            (@PathVariable Long id, @PathVariable String source, @PathVariable String dest, @PathVariable double taux, @PathVariable String date){
-        TauxChange tauxChange = new TauxChange(source,dest,taux,date);
-        TauxChange save = repository.save(tauxChange);
-        return save.toString();
+            (@PathVariable String source, @PathVariable String dest, @PathVariable double taux, @PathVariable String date){
+        TauxChange tauxChange = repository.save(new TauxChange(source,dest,taux,date));
+        return tauxChange.toString();
     }
 
 }

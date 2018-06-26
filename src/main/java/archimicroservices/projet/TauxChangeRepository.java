@@ -9,7 +9,7 @@ import javax.persistence.NamedQuery;
 // Creation du JPA Repository basé sur Spring Data
 public interface TauxChangeRepository extends JpaRepository<TauxChange, Long> {
 
-    @Query("select u from TauxChange u where u.source = ?1 and u.dest= ?2")
+    //@Query("select u from TauxChange u where u.source = ?1 and u.dest= ?2")
     TauxChange findBySourceAndDest(String source, String dest);
 
 
