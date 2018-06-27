@@ -1,5 +1,6 @@
-package archimicroservices.projet;
+package services;
 
+import metier.TauxChange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.*;
 import org.springframework.web.bind.annotation.*;

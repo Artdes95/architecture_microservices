@@ -1,9 +1,7 @@
 package cucumber.stepdefinitions;
 
-import archimicroservices.projet.ChangeController;
-import archimicroservices.projet.TauxChange;
-import archimicroservices.projet.TauxChangeRepository;
-import cucumber.api.PendingException;
+import metier.TauxChange;
+import services.TauxChangeRepository;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

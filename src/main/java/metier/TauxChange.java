@@ -1,4 +1,4 @@
-package archimicroservices.projet;
+package metier;
 
 import javax.annotation.*;
 import javax.persistence.*;
