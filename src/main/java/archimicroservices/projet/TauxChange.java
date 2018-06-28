@@ -1,4 +1,4 @@
-package metier;
+package archimicroservices.projet;
 
 import javax.annotation.*;
 import javax.persistence.*;
@@ -13,6 +13,8 @@ public class TauxChange {
     private String dest;
     private double taux;
     private String date;
+
+    public TauxChange(){}
 
     public TauxChange(String source, String dest, double taux, String date){
         this.source = source;

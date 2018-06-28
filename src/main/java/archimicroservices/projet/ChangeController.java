@@ -1,6 +1,5 @@
-package services;
+package archimicroservices.projet;
 
-import metier.TauxChange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.*;
 import org.springframework.web.bind.annotation.*;
@@ -14,32 +13,40 @@ public class ChangeController {
     @Autowired
     private TauxChangeRepository repository;
 
-    @GetMapping("/devise-change/get/source/{source}/dest/{dest}")
+    @GetMapping("/devise-change/taux/get/{source}/{dest}")
     public String retrouveTauxChange
             (@PathVariable String source, @PathVariable String dest){
         List<TauxChange> tauxChange = repository.findBySourceAndDest(source, dest);
-        return tauxChange.toString();
+        if (!tauxChange.isEmpty())return tauxChange.toString();
+        else return "Doesn't exist";
+
     }
 
-    @GetMapping("/devise-change/create/{source}/{dest}/{date}/{taux}")
+    @GetMapping("/devise-change/taux/create/{source}/{dest}/{date}/{taux}")
     public String ajoutTauxChange
             (@PathVariable String source, @PathVariable String dest,  @PathVariable String date, @PathVariable double taux){
         TauxChange tauxChange = repository.save(new TauxChange(source,dest,taux,date));
-        return tauxChange.toString();
+        if(!tauxChange.equals(null))return tauxChange.toString();
+        else return "Creation Failed";
     }
 
-    @GetMapping("/devise-change/modify/{source}/{dest}/{date}/{taux}")
-    public int modifierTauxChange
+    @GetMapping("/devise-change/taux/modify/{source}/{dest}/{date}/{taux}")
+    public String modifierTauxChange
             (@PathVariable String source, @PathVariable String dest, @PathVariable String date, @PathVariable double taux){
         int result = repository.update(source,dest,date,taux);
-        return result;
+        if(result==1){
+            return retrouveTauxChange(source,dest);
+        }
+        else return "Modification Failed";
     }
 
-    @GetMapping("/devise-change/suppress/{source}/{dest}/{date}/{taux}")
-    public void supprimerTauxChange
+
+    @GetMapping("/devise-change/taux/suppress/{source}/{dest}/{date}/{taux}")
+    public String supprimerTauxChange
             (@PathVariable String source, @PathVariable String dest, @PathVariable String date, @PathVariable double taux){
             TauxChange tauxChange = repository.findBySourceAndDestAndDateAndTaux(source, dest, date, taux);
-            repository.delete(tauxChange);
+            if(!tauxChange.equals(null)) {repository.delete(tauxChange);return "Suppression successful";}
+            else return "Suppression failed";
     }
 
 
