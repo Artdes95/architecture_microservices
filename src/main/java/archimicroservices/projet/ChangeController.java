@@ -30,6 +30,13 @@ public class ChangeController {
         return repository.findBySourceAndDest(source, dest);
     }
 
+    @GetMapping("/devise-change/taux/{source}/{dest}/{date}")
+    public double retrouveTauxChangeDate
+            (@PathVariable String source, @PathVariable String dest, @PathVariable String date){
+        return repository.findBySourceAndDestAndDate(source, dest, date);
+    }
+
+
     @PostMapping("/devise-change/taux/create")
     public TauxChange ajoutTauxChange
             (@RequestBody TauxChange tauxChange){
