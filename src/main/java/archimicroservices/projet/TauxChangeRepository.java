@@ -11,13 +11,4 @@ import java.util.List;
 public interface TauxChangeRepository extends JpaRepository<TauxChange, Long> {
 
     List<TauxChange> findBySourceAndDest(String source, String dest);
-    TauxChange findBySourceAndDestAndDateAndTaux(String source, String dest, String Date, double taux);
-
-    TauxChange save(TauxChange tauxChange);
-    void delete(TauxChange tauxChange);
-
-    @Transactional
-    @Modifying
-    @Query("update TauxChange p set taux = ?4 where p.source = ?1 and p.dest = ?2 and p.date = ?3")
-    int update(String source, String dest, String date, double taux);
 }
